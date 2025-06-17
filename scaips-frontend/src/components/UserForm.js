@@ -57,9 +57,7 @@ const UserForm = () => {
       </div>
 
       <br />
-<button type="button" onClick={() => navigate('/profile/test@example.com')}>
-  Test Redirect
-</button>
+      <button type="submit">Create</button>
     </form>
   );
 };
