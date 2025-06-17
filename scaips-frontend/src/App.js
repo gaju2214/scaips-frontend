@@ -1,13 +1,16 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserForm from './components/UserForm';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
-    <div className="App">
-      <h1>SCAIPS Frontend</h1>
-      <UserForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserForm />} />
+        <Route path="/profile/:email" element={<UserProfile />} />
+      </Routes>
+    </Router>
   );
 }
 
