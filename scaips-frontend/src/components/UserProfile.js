@@ -5,8 +5,8 @@ const UserProfile = () => {
   const { email } = useParams();
 
   return (
-    <div>
-      <h2>User Profile</h2>
+    <div style={{ textAlign: 'center', marginTop: '100px' }}>
+      <h1>👤 User Profile</h1>
       <p>Welcome, <strong>{email}</strong></p>
     </div>
   );
