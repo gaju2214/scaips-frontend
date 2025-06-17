@@ -9,28 +9,30 @@ const UserForm = () => {
   const navigate = useNavigate(); // ✅ initialize
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password_hash: passwordHash, role })
-      });
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password_hash: passwordHash, role })
+    });
 
-      const data = await res.json();
+    const data = await res.json();
+    console.log('Response status:', res.status);
+    console.log('Response data:', data);
 
-      if (res.ok) {
-        alert('User created successfully! 🎉');
-        navigate(`/profile/${email}`); // ✅ redirect to profile
-      } else {
-        alert('Error: ' + (data.message || 'Unknown error'));
-      }
-    } catch (error) {
-      console.error('Submission failed:', error);
-      alert('Network or server error');
+    if (res.ok) {
+      alert('User created!');
+      navigate(`/profile/${email}`); // ✅ Redirect
+    } else {
+      alert('Error: ' + (data.message || 'Something went wrong'));
     }
-  };
+  } catch (err) {
+    console.error('Network error:', err);
+    alert('Network error');
+  }
+};
 
   return (
     <form onSubmit={handleSubmit}>
